@@ -1,0 +1,53 @@
+Day 10
+Instructions
+(This challenge is worth 5 points)
+
+Your task is to create a function that will take in an array of weather objects and will return a rounded average of the wind speed.
+
+Since we work with an unknown amount of entries, you will need to calculate the average wind speed using loops.
+
+Examples
+Input:
+
+    const exampleEntries = [
+      { 
+        temperature:0, 
+        weather:"sunny", 
+        windDirection: "NNE", 
+        windSpeed:24
+      },
+      { 
+        temperature:10, 
+        weather:"cloudy", 
+        windDirection: "NNE", 
+        windSpeed:9 
+      }
+    ] 
+    
+Output:
+
+    17
+    SOLUTION
+    
+    function averageWindSpeed(weatherEntries){
+//creating an rray to store windSpeed values
+const arr = [];
+//itirating through the weatherEntries array
+for (let i of weatherEntries) {
+//checking if the weatherEntries object has the windSpeed property
+  if (i.windSpeed){
+//if yes, pushing the windSpeed values into the "arr"
+    arr.push(i.windSpeed)
+  }
+} 
+//checking if the arr has more than 2 values 
+if (arr.length >= 2) {
+//if yes, calculating the average of the values added to the array 
+const avg = Math.round(arr.reduce((total, num)=>total+num)/arr.length);
+//and returning the average
+return avg
+  } else {
+//if the array only has one value, we are returnng this value
+    return "No average can be calculated. WindSpeed is:" + arr
+  }
+}
