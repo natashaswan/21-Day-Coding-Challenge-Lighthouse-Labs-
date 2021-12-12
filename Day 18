@@ -1,0 +1,59 @@
+DAY 18
+Instructions
+(This challenge is worth 10 points)
+
+Your task is to write a function that will take in an array of lunch choices (strings) and return the choice as a string with the most votes.
+
+There is always two lunch choices, and always an odd number of astronauts!
+
+Examples
+Input:
+
+    const listOfChoices = [
+      "Chicken Dinner",
+      "Chicken Dinner",
+      "Chicken Dinner",
+      "Ice Cream Sandwich", 
+      "Ice Cream Sandwich"
+    ]
+Output:
+
+    Chicken Dinner
+    
+    SOLUTION
+    
+const chooseLunchWinner = (listOfChoices) => {
+  //declairing two objects to store the nunber of votes and the name of dinner choice
+  let firstChoice = {
+      numOfVotes: 0,
+      choice: ""
+    };
+  let secondChoice = {
+      numOfVotes: 0,
+      choice: ""
+    };
+  
+  //itirating through the listOfChoices array
+  for (let i = 0; i <= listOfChoices.length; i++){
+  //using the filter method to count the number of votes for the first choice in the listOfChoices and store it in the object
+     firstChoice.numOfVotes = listOfChoices.filter((e)=>e===listOfChoices[i]).length;
+  //storing the choice itself in the object
+     firstChoice.choice = listOfChoices[i];
+     
+  //when a different choice from the first one is found, we count the number of votes for that choice and store it in the object 
+     if (listOfChoices[i] !== listOfChoices[i+1]){
+        secondChoice.numOfVotes = listOfChoices.filter((e)=>e===listOfChoices[i+1]).length;
+  //storing the choice itself in the object
+        secondChoice.choice = listOfChoices[i+1];
+  //we don't need to continue itirating so breaking from the loop
+        break
+     }
+  
+
+   } if (firstChoice.numOfVotes > secondChoice.numOfVotes){
+      return firstChoice.choice
+  } else {
+      return secondChoice.choice
+  }
+} 
+    
