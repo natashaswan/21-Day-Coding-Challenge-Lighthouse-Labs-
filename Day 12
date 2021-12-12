@@ -1,0 +1,48 @@
+DAY 12
+
+Instructions
+(This challenge is worth 20 points)
+
+Your task is to write a function that will take in an array of objects containing a sender and a message as a parameter. The function will then parse a message from each object, add it to an array then return the built array.
+
+Each message is built exactly like the first challenge, so you can either use the function you already made, or rebuild it from scratch.
+
+Examples
+Input:
+
+    const messages = [
+      {origin:"MC", message:"Hello!"},
+      {origin:"Shuttle", message:"Hey!"},
+    ]
+    
+Output:
+
+    [
+      "MC: Hello!",
+      "Shuttle: Hey!"
+    ]
+    
+
+SOLUTION
+
+function parseMessage(origin, message){
+    if (typeof origin === 'string' || origin instanceof String) {
+    origin = origin.replace(/^"|"$/g, '');
+    } else {
+        console.log ("Please re-enter the sender's name in a text format.")
+        return}
+    if (typeof message === 'string' || message instanceof String) {
+        message = message.replace(/^"|"$/g, '');
+    } else {
+        return "Please re-enter the message in a text format."}
+    const result = origin + ": " + message;
+    return result
+}
+
+function parseTranscripts(messages){
+    let arr = [];
+    for (let i of messages){
+        let msg = parseMessage(i.origin, i.message);
+        arr.push(msg);      
+    } return arr;             
+}
