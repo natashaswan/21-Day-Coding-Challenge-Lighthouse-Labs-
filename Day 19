@@ -1,0 +1,57 @@
+DAY 19
+
+Instructions
+(This challenge is worth 5 points)
+
+Your task is to write a function that will take in a list of data entries in the shape of an array of objects. The function will then organize and return the entries by type and store each bit of data (string) in each list, in the shape of an object containing arrays.
+
+Examples
+Input:
+
+const listOfReceivedData = [
+  {type: "astro", data: "Saturn Data"},
+  {type: "bio", data: "Space Potatoes"},
+  {type: "physics", data: "Lagrange Points"},
+  {type: "bio", data: "OMG Tardigrades"},
+  {type: "physics", data: "Material reflectivity"},
+  {type: "astro", data: "Mercury is not the hottest"},
+]
+    
+Output:
+
+{
+  "astro":  ["Saturn Data", "Mercury is not the hottest"],
+  "bio": ["Space Potatoes", "OMG Tardigrades"],
+  "physics": ["Lagrange Points", "Material reflectivity"],
+}
+    SOLUTION
+  
+function organizeData(receivedData){
+  //this function takes in a type, and returns an array of data corresponding to the type
+    function arrFunc(objArr, type){
+        let arr =[];
+        for (let i in objArr){
+          
+           if (objArr[i].type === type){
+             arr.push(objArr[i].data);  
+           } 
+       } return arr
+    }
+    
+    
+    let dataArr = [];
+    let obj = {};
+  
+    let receivedDataNew = {... receivedData};
+    
+    for (let i in receivedDataNew){
+        let key = receivedDataNew[i].type;
+        if (!obj.hasOwnProperty(key)){
+        obj[key] = arrFunc(receivedDataNew, key);
+        dataArr=[];
+        } 
+    } return obj
+        
+    
+}  
+    
